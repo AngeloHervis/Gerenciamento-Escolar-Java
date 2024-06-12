@@ -12,9 +12,24 @@ public class Aluno extends Pessoa {
     }
 
     // Getters e Setters
-    public String getMatricula() { return matricula; }
-    public void setMatricula(String matricula) { this.matricula = matricula; }
+    public String getMatricula() {
+        return matricula;
+    }
 
-    public Turma getTurma() { return turma; }
-    public void setTurma(Turma turma) { this.turma = turma; }
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
+    @Override
+    public String exibirInformacoes() {
+        return super.exibirInformacoes() + "\nMatrícula: " + matricula + "\nTurma: " + turma.getNome();
+    }
 }

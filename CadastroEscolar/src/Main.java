@@ -28,7 +28,6 @@ import views.TurmaView;
 import views.OutroFuncionarioView;
 import views.AulaView;
 
-
 public class Main {
     public static void main(String[] args) {
         AlunoCrud alunoCRUD = new AlunoCrud();
