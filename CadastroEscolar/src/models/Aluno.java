@@ -4,9 +4,9 @@ public class Aluno extends Pessoa {
     private String matricula;
     private Turma turma;
 
-    // Construtor
-    public Aluno(int id, String nome, int idade, String matricula, Turma turma) {
-        super(id, nome, idade); // Chama o construtor da superclasse
+
+    public Aluno(String nome, int idade, String matricula, Turma turma) {
+        super(nome, idade); 
         this.matricula = matricula;
         this.turma = turma;
     }

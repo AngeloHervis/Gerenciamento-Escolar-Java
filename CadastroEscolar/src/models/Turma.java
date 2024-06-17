@@ -5,12 +5,13 @@ import java.util.List;
 
 public class Turma {
     private int id;
+    private int proximoId = 1;
     private String nome;
     private String descricao;
     private List<Aluno> alunos;
 
     public Turma(int id, String nome, String descricao) {
-        this.id = id;
+        this.id = proximoId++;
         this.nome = nome;
         this.descricao = descricao;
         this.alunos = new ArrayList<>();

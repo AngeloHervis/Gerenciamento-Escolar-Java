@@ -1,6 +1,9 @@
 package controllers;
 
 import models.Turma;
+
+import java.util.List;
+
 import crud.TurmaCrud;
 
 public class TurmaController{
@@ -24,6 +27,10 @@ public class TurmaController{
 
     public Turma buscarTurmaPorId(int id) {
         return turmaCrud.buscarTurmaPorId(id);
+    }
+
+    public List<Turma> listarTurma(){
+        return turmaCrud.listarTurmas();
     }
 }
 

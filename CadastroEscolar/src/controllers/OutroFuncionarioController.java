@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import crud.OutroFuncionarioCrud;
 import models.OutroFuncionario;
 
@@ -24,5 +26,9 @@ public class OutroFuncionarioController {
 
     public OutroFuncionario buscarOutroFuncionarioPorId(int id) {
         return outroFuncionarioCrud.buscarOutroFuncionarioPorId(id);
+    }
+
+    public List<OutroFuncionario> listarOutrosFuncionarios(){
+        return outroFuncionarioCrud.listarOutrosFuncionarios();
     }
 }

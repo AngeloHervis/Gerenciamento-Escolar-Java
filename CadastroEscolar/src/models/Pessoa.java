@@ -2,11 +2,12 @@ package models;
 
 public abstract class Pessoa {
     private int id;
+    private static int proximoId = 1;
     private String nome;
     private int idade;
 
-    public Pessoa(int id, String nome, int idade) {
-        this.id = id;
+    public Pessoa(String nome, int idade) {
+        this.id = proximoId++;
         this.nome = nome;
         this.idade = idade;
     }

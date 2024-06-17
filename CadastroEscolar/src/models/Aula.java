@@ -3,6 +3,7 @@ package models;
 import java.time.LocalDate;
 
 public class Aula {
+    private int proximoId = 1;
     private int id;
     private Turma turma;
     private Materia materia;
@@ -10,8 +11,8 @@ public class Aula {
     private LocalDate horario;
     private String descricao;
     
-    public Aula(int id, Turma turma, Materia materia, Professor professor, LocalDate horario, String descricao) {
-        this.id = id;
+    public Aula(Turma turma, Materia materia, Professor professor, LocalDate horario, String descricao) {
+        this.id = proximoId++;
         this.turma = turma;
         this.materia = materia;
         this.professor = professor;
