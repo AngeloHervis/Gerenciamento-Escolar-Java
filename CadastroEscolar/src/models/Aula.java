@@ -6,15 +6,13 @@ public class Aula {
     private int proximoId = 1;
     private int id;
     private Turma turma;
-    private Materia materia;
     private Professor professor;
     private LocalDate horario;
     private String descricao;
     
-    public Aula(Turma turma, Materia materia, Professor professor, LocalDate horario, String descricao) {
+    public Aula(Turma turma, Professor professor, LocalDate horario, String descricao) {
         this.id = proximoId++;
         this.turma = turma;
-        this.materia = materia;
         this.professor = professor;
         this.horario = horario;
         this.descricao = descricao;
@@ -36,13 +34,6 @@ public class Aula {
         this.turma = turma;
     }
 
-    public Materia getMateria() {
-        return materia;
-    }
-
-    public void setMateria(Materia materia) {
-        this.materia = materia;
-    }
 
     public Professor getProfessor() {
         return professor;

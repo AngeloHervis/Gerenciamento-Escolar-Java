@@ -1,10 +1,10 @@
 package models;
 
 public abstract class Pessoa {
-    private int id;
-    private static int proximoId = 1;
-    private String nome;
-    private int idade;
+    protected int id;
+    protected static int proximoId = 1;
+    protected String nome;
+    protected int idade;
 
     public Pessoa(String nome, int idade) {
         this.id = proximoId++;

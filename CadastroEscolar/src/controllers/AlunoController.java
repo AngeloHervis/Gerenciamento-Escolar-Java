@@ -1,6 +1,9 @@
 package controllers;
 
 import models.Aluno;
+
+import java.util.List;
+
 import crud.AlunoCrud;
 
 public class AlunoController {
@@ -24,5 +27,9 @@ public class AlunoController {
 
     public Aluno buscarAlunoPorId(int id) {
         return alunoCrud.buscarAlunoPorId(id);
+    }
+
+    public List<Aluno> listarAlunos(){
+        return alunoCrud.listarAlunos();
     }
 }

@@ -1,6 +1,9 @@
 package controllers;
 
 import models.Professor;
+
+import java.util.List;
+
 import crud.ProfessorCrud;
 
 public class ProfessorController{
@@ -24,6 +27,10 @@ public class ProfessorController{
 
     public Professor buscarProfessorPorId(int id) {
         return professorCrud.buscarProfessorPorId(id);
+    }
+
+    public List<Professor> listarProfessores(){
+        return professorCrud.listarProfessores();
     }
 }
 

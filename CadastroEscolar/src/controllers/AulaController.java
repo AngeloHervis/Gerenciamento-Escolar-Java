@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import crud.AulaCrud;
 import models.Aula;
 
@@ -24,5 +26,9 @@ public class AulaController {
 
     public Aula buscarAulaPorId(int id) {
         return aulaCrud.buscarAulaPorId(id);
+    }
+
+    public List<Aula> listarAulas(){
+        return aulaCrud.listarAulas();
     }
 }

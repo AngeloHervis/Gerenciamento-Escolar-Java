@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import crud.MateriaCrud;
 import models.Materia;
 
@@ -24,5 +26,9 @@ public class MateriaController {
 
     public Materia buscarMateriaPorId(int id) {
         return materiaCrud.buscarMateriaPorId(id);
+    }
+
+    public List<Materia> listarMaterias(){
+        return materiaCrud.listarMaterias();
     }
 }

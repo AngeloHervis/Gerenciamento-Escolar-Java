@@ -10,7 +10,7 @@ public class Turma {
     private String descricao;
     private List<Aluno> alunos;
 
-    public Turma(int id, String nome, String descricao) {
+    public Turma(String nome, String descricao) {
         this.id = proximoId++;
         this.nome = nome;
         this.descricao = descricao;
