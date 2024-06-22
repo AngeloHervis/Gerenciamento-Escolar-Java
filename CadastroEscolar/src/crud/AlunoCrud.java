@@ -1,6 +1,8 @@
 package crud;
 
 import models.Aluno;
+import util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +14,14 @@ public class AlunoCrud {
             throw new Exception("Aluno com o nome " + aluno.getNome() + " já está cadastrado.");
         }
         alunos.add(aluno);
+        registrarLog("Aluno cadastrado: " + aluno.getNome());
     }
 
     private Aluno buscarAlunoPorNome(String nome) {
         return alunos.stream()
-            .filter(a -> a.getNome().trim().equalsIgnoreCase(nome.trim()))
-            .findFirst()
-            .orElse(null);
+                .filter(a -> a.getNome().trim().equalsIgnoreCase(nome.trim()))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Aluno> listarAlunos() throws Exception {
@@ -30,9 +33,9 @@ public class AlunoCrud {
 
     public Aluno buscarAlunoPorId(int id) throws Exception {
         Aluno alunoEncontrado = alunos.stream()
-            .filter(a -> a.getId() == id)
-            .findFirst()
-            .orElse(null);
+                .filter(a -> a.getId() == id)
+                .findFirst()
+                .orElse(null);
         if (alunoEncontrado == null) {
             throw new Exception("Aluno com o id: " + id + " não foi encontrado.");
         }
@@ -46,6 +49,7 @@ public class AlunoCrud {
             aluno.setIdade(alunoAtualizado.getIdade());
             aluno.setMatricula(alunoAtualizado.getMatricula());
             aluno.setTurma(alunoAtualizado.getTurma());
+            registrarLog("Aluno atualizado: " + aluno.getNome());
         }
     }
 
@@ -53,6 +57,17 @@ public class AlunoCrud {
         Aluno aluno = buscarAlunoPorId(id);
         if (aluno != null) {
             alunos.remove(aluno);
+            registrarLog("Aluno removido: " + aluno.getNome());
+        }
+    }
+
+    private void registrarLog(String mensagem) {
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add(mensagem);
+            Log.salvar(logs, "log");
+        } catch (Exception e) {
+            System.err.println("Erro ao salvar log: " + e.getMessage());
         }
     }
 }

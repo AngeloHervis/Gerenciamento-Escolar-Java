@@ -1,14 +1,17 @@
 package crud;
 
 import models.Aula;
+import util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AulaCrud {
     private List<Aula> aulas = new ArrayList<>();
 
-    public void cadastrarAula(Aula aula) {
+    public void cadastrarAula(Aula aula) throws Exception {
         aulas.add(aula);
+        registrarLog("Aula cadastrada: " + aula.getId());
     }
 
     public List<Aula> listarAulas() throws Exception {
@@ -20,9 +23,9 @@ public class AulaCrud {
 
     public Aula buscarAulaPorId(int id) throws Exception {
         Aula aulaEncontrada = aulas.stream()
-            .filter(a -> a.getId() == id)
-            .findFirst()
-            .orElse(null);
+                .filter(a -> a.getId() == id)
+                .findFirst()
+                .orElse(null);
         if (aulaEncontrada == null) {
             throw new Exception("Aula com o id: " + id + " não foi encontrada.");
         }
@@ -37,6 +40,7 @@ public class AulaCrud {
             aula.setDiaDeAula(aulaAtualizada.getDiaDeAula());
             aula.setHorario(aulaAtualizada.getHorario());
             aula.setDescricao(aulaAtualizada.getDescricao());
+            registrarLog("Aula atualizada: " + aula.getId());
         }
     }
 
@@ -44,6 +48,17 @@ public class AulaCrud {
         Aula aula = buscarAulaPorId(id);
         if (aula != null) {
             aulas.remove(aula);
+            registrarLog("Aula removida: " + aula.getId());
+        }
+    }
+
+    private void registrarLog(String mensagem) {
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add(mensagem);
+            Log.salvar(logs, "log");
+        } catch (Exception e) {
+            System.err.println("Erro ao salvar log: " + e.getMessage());
         }
     }
 }

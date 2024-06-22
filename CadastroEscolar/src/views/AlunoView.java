@@ -23,7 +23,7 @@ public class AlunoView {
         System.out.println("Idade: " + aluno.getIdade());
         System.out.println("Número de matrícula: " + aluno.getMatricula());
     
-        Turma turma = aluno.getTurma(); // Obtém a turma associada ao aluno
+        Turma turma = aluno.getTurma(); 
         if (turma != null) {
             System.out.println("Turma: " + turma.getNome());
         } else {

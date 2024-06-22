@@ -16,6 +16,7 @@ public class Aula {
         this.id = proximoId++;
         this.turma = turma;
         this.professor = professor;
+        this.diaDeAula = diaDeAula;
         this.horario = horario;
         this.descricao = descricao;
     }

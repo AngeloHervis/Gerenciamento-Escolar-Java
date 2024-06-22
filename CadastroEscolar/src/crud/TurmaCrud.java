@@ -1,6 +1,8 @@
 package crud;
 
 import models.Turma;
+import util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +14,14 @@ public class TurmaCrud {
             throw new Exception("Turma com o nome " + turma.getNome() + " já está cadastrada.");
         }
         turmas.add(turma);
+        registrarLog("Turma cadastrada: " + turma.getNome());
     }
 
     private Turma buscarTurmaPorNome(String nome) {
         return turmas.stream()
-            .filter(t -> t.getNome().trim().equalsIgnoreCase(nome.trim()))
-            .findFirst()
-            .orElse(null);
+                .filter(t -> t.getNome().trim().equalsIgnoreCase(nome.trim()))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Turma> listarTurmas() throws Exception {
@@ -30,9 +33,9 @@ public class TurmaCrud {
 
     public Turma buscarTurmaPorId(int id) throws Exception {
         Turma turmaEncontrada = turmas.stream()
-            .filter(t -> t.getId() == id)
-            .findFirst()
-            .orElse(null);
+                .filter(t -> t.getId() == id)
+                .findFirst()
+                .orElse(null);
         if (turmaEncontrada == null) {
             throw new Exception("Turma com o id: " + id + " não foi encontrada.");
         }
@@ -44,6 +47,7 @@ public class TurmaCrud {
         if (turma != null) {
             turma.setNome(turmaAtualizada.getNome());
             turma.setDescricao(turmaAtualizada.getDescricao());
+            registrarLog("Turma atualizada: " + turma.getNome());
         }
     }
 
@@ -51,6 +55,17 @@ public class TurmaCrud {
         Turma turma = buscarTurmaPorId(id);
         if (turma != null) {
             turmas.remove(turma);
+            registrarLog("Turma removida: " + turma.getNome());
+        }
+    }
+
+    private void registrarLog(String mensagem) {
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add(mensagem);
+            Log.salvar(logs, "log");
+        } catch (Exception e) {
+            System.err.println("Erro ao salvar log: " + e.getMessage());
         }
     }
 }

@@ -1,0 +1,11 @@
+Turma cadastrada: sdfsdfs
+LOGOU COM PROFESSOR
+LOGOU COM FUNCIONARIO
+Aluno cadastrado: Nome
+Turma cadastrada: 3b
+Turma cadastrada: oquiro
+Professor cadastrado: Wrong
+Matéria cadastrada: Have
+Funcionário removido: Otis
+Funcionário atualizado: Otis
+Funcionário cadastrado: oi

@@ -25,7 +25,7 @@ public class MateriaController {
     }
 
     public Materia buscarMateriaPorId(int id) throws Exception{
-        return materiaCrud.buscarMateriaId(id);
+        return materiaCrud.buscarMateriaPorId(id);
     }
 
     public List<Materia> listarMaterias() throws Exception{

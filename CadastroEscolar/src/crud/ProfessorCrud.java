@@ -1,6 +1,8 @@
 package crud;
 
 import models.Professor;
+import util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ public class ProfessorCrud {
             throw new Exception("Professor com o nome " + professor.getNome() + " já está cadastrado.");
         }
         professores.add(professor);
+        registrarLog("Professor cadastrado: " + professor.getNome());
     }
 
     private Professor buscarProfessorPorNome(String nome) {
@@ -45,6 +48,7 @@ public class ProfessorCrud {
             professor.setNome(professorAtualizado.getNome());
             professor.setIdade(professorAtualizado.getIdade());
             professor.setMateria(professorAtualizado.getMateria());
+            registrarLog("Professor atualizado: " + professor.getNome());
         }
     }
 
@@ -52,6 +56,17 @@ public class ProfessorCrud {
         Professor professor = buscarProfessorPorId(id);
         if (professor != null) {
             professores.remove(professor);
+            registrarLog("Professor removido: " + professor.getNome());
+        }
+    }
+
+    private void registrarLog(String mensagem) {
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add(mensagem);
+            Log.salvar(logs, "log");
+        } catch (Exception e) {
+            System.err.println("Erro ao salvar log: " + e.getMessage());
         }
     }
 }

@@ -1,8 +1,11 @@
-
 import crud.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import controllers.*;
 import views.*;
+import util.*;
 
 public class Main {
     private static final String PROFESSOR_USUARIO = "professor";
@@ -11,7 +14,9 @@ public class Main {
     private static final String FUNCIONARIO_USUARIO = "funcionario";
     private static final String FUNCIONARIO_SENHA = "func123";
 
-    public static void main(String[] args) throws Exception{
+
+
+    public static void main(String[] args) throws Exception {
         
         AlunoCrud alunoCRUD = new AlunoCrud();
         ProfessorCrud professorCRUD = new ProfessorCrud();
@@ -40,6 +45,8 @@ public class Main {
             String tipoUsuario = login(scanner);
 
             if (tipoUsuario != null) {
+                registrarLog("LOGOU COM " + tipoUsuario);
+
                 System.out.println("Login bem-sucedido!");
 
                 boolean voltarParaLogin = false;
@@ -133,9 +140,14 @@ public class Main {
             }
         }
     }
-   
-    
 
-    
-
+    private static void registrarLog(String mensagem) {
+        try {
+            List<String> logs = new ArrayList<>();
+            logs.add(mensagem);
+            Log.salvar(logs, "log");
+        } catch (Exception e) {
+            System.err.println("Erro ao salvar log: " + e.getMessage());
+        }
+    }
 }
