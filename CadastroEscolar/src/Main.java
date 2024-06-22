@@ -1,31 +1,8 @@
-import models.Aluno;
-import models.Aula;
-import models.Professor;
-import models.Turma;
-import models.Materia;
-import models.OutroFuncionario;
-import crud.AlunoCrud;
-import crud.MateriaCrud;
-import crud.ProfessorCrud;
-import crud.TurmaCrud;
-import crud.OutroFuncionarioCrud;
-import crud.AulaCrud;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+
+import crud.*;
 import java.util.Scanner;
-import controllers.AlunoController;
-import controllers.AulaController;
-import controllers.MateriaController;
-import controllers.ProfessorController;
-import controllers.OutroFuncionarioController;
-import controllers.TurmaController;
-import views.AlunoView;
-import views.MateriaView;
-import views.ProfessorView;
-import views.TurmaView;
-import views.OutroFuncionarioView;
-import views.AulaView;
+import controllers.*;
+import views.*;
 
 public class Main {
     private static final String PROFESSOR_USUARIO = "professor";
@@ -34,7 +11,7 @@ public class Main {
     private static final String FUNCIONARIO_USUARIO = "funcionario";
     private static final String FUNCIONARIO_SENHA = "func123";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         
         AlunoCrud alunoCRUD = new AlunoCrud();
         ProfessorCrud professorCRUD = new ProfessorCrud();
@@ -142,9 +119,9 @@ public class Main {
     private static String login(Scanner scanner) {
         while (true) {
             System.out.println("Tela de Login");
-            System.out.println("Username: ");
+            System.out.println("Usuário: ");
             String usuario = scanner.nextLine();
-            System.out.println("Password: ");
+            System.out.println("Senha: ");
             String senha = scanner.nextLine();
 
             if (PROFESSOR_USUARIO.equals(usuario) && PROFESSOR_SENHA.equals(senha)) {

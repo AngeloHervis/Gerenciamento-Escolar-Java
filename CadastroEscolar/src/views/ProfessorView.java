@@ -29,7 +29,7 @@ public class ProfessorView {
         }
     }
 
-    public void menuProfessores(ProfessorController professorController, ProfessorView professorView, MateriaController materiaController, MateriaView materiaView, Scanner scanner) {
+    public void menuProfessores(ProfessorController professorController, ProfessorView professorView, MateriaController materiaController, MateriaView materiaView, Scanner scanner) throws Exception{
         System.out.println("Menu de Professores");
         System.out.println("1. Cadastrar Professor");
         System.out.println("2. Buscar Professor por ID");

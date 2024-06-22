@@ -13,23 +13,23 @@ public class AlunoController {
         this.alunoCrud = alunoCrud;
     }
 
-    public void cadastrarAluno(Aluno aluno) {
+    public void cadastrarAluno(Aluno aluno) throws Exception{
         alunoCrud.cadastrarAluno(aluno);
     }
 
-    public void atualizarAluno(Aluno aluno) {
+    public void atualizarAluno(Aluno aluno) throws Exception{
         alunoCrud.atualizarAluno(aluno);
     }
 
-    public void deletarAluno(int id) {
+    public void deletarAluno(int id) throws Exception{
         alunoCrud.deletarAluno(id);
     }
 
-    public Aluno buscarAlunoPorId(int id) {
+    public Aluno buscarAlunoPorId(int id) throws Exception{
         return alunoCrud.buscarAlunoPorId(id);
     }
 
-    public List<Aluno> listarAlunos(){
+    public List<Aluno> listarAlunos() throws Exception{
         return alunoCrud.listarAlunos();
     }
 }

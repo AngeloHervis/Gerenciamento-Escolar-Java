@@ -13,23 +13,23 @@ public class TurmaController{
         this.turmaCrud = turmaCrud;
     }
 
-    public void cadastrarTurma(Turma turma) {
+    public void cadastrarTurma(Turma turma) throws Exception{
         turmaCrud.cadastrarTurma(turma);
     }
 
-    public void atualizarTurma(Turma turma) {
+    public void atualizarTurma(Turma turma) throws Exception{
         turmaCrud.atualizarTurma(turma);
     }
 
-    public void deletarTurma(int id) {
+    public void deletarTurma(int id) throws Exception{
         turmaCrud.deletarTurma(id);
     }
 
-    public Turma buscarTurmaPorId(int id) {
+    public Turma buscarTurmaPorId(int id) throws Exception{
         return turmaCrud.buscarTurmaPorId(id);
     }
 
-    public List<Turma> listarTurma(){
+    public List<Turma> listarTurma() throws Exception{
         return turmaCrud.listarTurmas();
     }
 }

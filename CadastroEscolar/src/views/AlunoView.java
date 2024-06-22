@@ -38,7 +38,7 @@ public class AlunoView {
         }
     }
 
-    public void menuAlunos(AlunoController alunoController, AlunoView alunoView, TurmaController turmaController, TurmaView turmaView, Scanner scanner) {
+    public void menuAlunos(AlunoController alunoController, AlunoView alunoView, TurmaController turmaController, TurmaView turmaView, Scanner scanner) throws Exception{
     System.out.println("Menu de Alunos");
     System.out.println("1. Cadastrar Aluno");
     System.out.println("2. Buscar Aluno por ID");

@@ -1,16 +1,18 @@
 package models;
 
-import java.time.LocalDate;
+
+import java.time.LocalTime;
 
 public class Aula {
     private int proximoId = 1;
     private int id;
     private Turma turma;
     private Professor professor;
-    private LocalDate horario;
+    private String diaDeAula;
+    private LocalTime horario;
     private String descricao;
     
-    public Aula(Turma turma, Professor professor, LocalDate horario, String descricao) {
+    public Aula(Turma turma, Professor professor, String diaDeAula, LocalTime horario, String descricao) {
         this.id = proximoId++;
         this.turma = turma;
         this.professor = professor;
@@ -43,11 +45,11 @@ public class Aula {
         this.professor = professor;
     }
 
-    public LocalDate getHorario() {
+    public LocalTime getHorario() {
         return horario;
     }
 
-    public void setHorario(LocalDate horario) {
+    public void setHorario(LocalTime horario) {
         this.horario = horario;
     }
 
@@ -57,5 +59,13 @@ public class Aula {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getDiaDeAula() {
+        return diaDeAula;
+    }
+
+    public void setDiaDeAula(String diaDeAula) {
+        this.diaDeAula = diaDeAula;
     }
 }

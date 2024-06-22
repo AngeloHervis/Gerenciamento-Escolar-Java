@@ -1,12 +1,9 @@
 package views;
-
 import java.util.List;
 import java.util.Scanner;
+import controllers.MateriaController;
+import models.Materia;
 
-import controllers.MateriaController;
-import controllers.MateriaController;
-import models.Materia;
-import models.Materia;
 
 public class MateriaView {
     private MateriaController materiaController;
@@ -16,11 +13,10 @@ public class MateriaView {
     }
 
     public void exibirDetalhesMateria(Materia materia) {
-        System.out.println("Detalhes do Materia:");
+        System.out.println("Detalhes da Materia:");
         System.out.println("ID: " + materia.getId());
         System.out.println("Nome: " + materia.getNome());
         System.out.println("Descrição: " + materia.getDescricao());
-        System.out.println("Professores : " + materia.getprofessores());
 
     }
 
@@ -31,7 +27,7 @@ public class MateriaView {
         }
     }
 
-    public void menuMaterias(MateriaController materiaController, MateriaView materiaView, Scanner scanner) {
+    public void menuMaterias(MateriaController materiaController, MateriaView materiaView, Scanner scanner) throws Exception{
         System.out.println("Menu de Materias");
         System.out.println("1. Cadastrar Materia");
         System.out.println("2. Buscar Materia por ID");

@@ -16,7 +16,7 @@ public class TurmaView {
         System.out.println("Detalhes do Turma:");
         System.out.println("ID: " + turma.getId());
         System.out.println("Nome: " + turma.getNome());
-        System.out.println("Nome: " + turma.getDescricao());
+        System.out.println("Descrição: " + turma.getDescricao());
     }
 
     public void exibirListaTurmas(List<Turma> turmas) {
@@ -26,7 +26,7 @@ public class TurmaView {
         }
     }
 
-    public void menuTurmas(TurmaController turmaController, TurmaView turmaView, Scanner scanner) {
+    public void menuTurmas(TurmaController turmaController, TurmaView turmaView, Scanner scanner) throws Exception{
         System.out.println("Menu de Turmas");
         System.out.println("1. Cadastrar Turma");
         System.out.println("2. Buscar Turma por ID");

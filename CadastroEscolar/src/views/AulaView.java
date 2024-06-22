@@ -1,21 +1,18 @@
 package views;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
-import controllers.AulaController;
-import controllers.MateriaController;
-import controllers.ProfessorController;
-import controllers.TurmaController;
-import models.Aula;
-import models.Materia;
-import models.Professor;
-import models.Turma;
+import controllers.*;
+import models.*;
 
 public class AulaView {
     private AulaController aulaController;
+    private LocalTime horario = null;
+    private LocalTime horarioAtualizado = null;
 
     public AulaView(AulaController aulaController) {
         this.aulaController = aulaController;
@@ -26,20 +23,18 @@ public class AulaView {
         System.out.println("ID: " + aula.getId());
         System.out.println("Professor: " + aula.getProfessor().getNome());
         System.out.println("Matéria que dá aula : " + aula.getTurma().getNome());
+        System.out.println("Dia da aula: " + aula.getDiaDeAula());
         System.out.println("Horário : " + aula.getHorario());
     }
 
     public void exibirListaAulas(List<Aula> aulas) {
         System.out.println("Lista de aulas:");
         for (Aula aula : aulas) {
-        System.out.println("ID: " + aula.getId());
-        System.out.println("Professor: " + aula.getProfessor());
-        System.out.println("Turma" + aula.getTurma());
-        System.out.println("Horário : " + aula.getHorario());
+            exibirDetalhesAula(aula);
         }
     }
 
-    public void menuAulas(AulaController aulaController, AulaView aulaView, ProfessorController professorController, ProfessorView professorView, TurmaController turmaController, TurmaView turmaView, Scanner scanner) {
+    public void menuAulas(AulaController aulaController, AulaView aulaView, ProfessorController professorController, ProfessorView professorView, TurmaController turmaController, TurmaView turmaView, Scanner scanner) throws Exception{
         System.out.println("Menu de Aulas");
         System.out.println("1. Cadastrar aula");
         System.out.println("2. Buscar aula por ID");
@@ -58,7 +53,7 @@ public class AulaView {
                 for (Professor professor : professorController.listarProfessores()) {
                     professorView.exibirDetalhesProfessor(professor);
                 }
-                System.out.print("Digite o ID do professor: ");
+                System.out.println("Digite o ID do professor: ");
                 int idProfessor = scanner.nextInt();
                 scanner.nextLine();
 
@@ -71,29 +66,31 @@ public class AulaView {
                 for (Turma turma : turmaController.listarTurma()) {
                     turmaView.exibirDetalhesTurma(turma);
                 }
-                System.out.print("Digite o ID da turma: ");
+                System.out.println("Digite o ID da turma: ");
                 int idTurma = scanner.nextInt();
                 scanner.nextLine();
+
 
                 Turma turmaSelecionada = turmaController.buscarTurmaPorId(idTurma);
                 if (turmaSelecionada == null) {
                     System.out.println("Turma não encontrada! Aula não cadastrada.");
                     break;
                 }
-                System.out.print("Digite a data da aula (formato dd/MM/yyyy): ");
-                String dataAulaString = scanner.nextLine();
-                LocalDate dataAula;
+                System.out.println("Digite o dia da aula: ");
+                String diaAula = scanner.nextLine();
+                System.out.println("Digite o horário da aula (formato HH:mm): ");
+                String horarioString = scanner.nextLine();
                 try {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    dataAula = LocalDate.parse(dataAulaString, formatter);
-                } catch (Exception e) {
-                    System.out.println("Data informada em formato inválido! Aula não cadastrada.");
-                    return;
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                    horario = LocalTime.parse(horarioString, formatter);
+                    System.out.println("Horário da aula: " + horario);
+                } catch (DateTimeParseException e) {
+                    System.out.println("Horário informado em formato inválido! Aula não cadastrada.");
                 }
                 System.out.print("Digite a descrição da aula: ");
                 String descricao = scanner.nextLine();
 
-                Aula novaAula = new Aula(turmaSelecionada, professorSelecionado, dataAula, descricao);
+                Aula novaAula = new Aula(turmaSelecionada, professorSelecionado, diaAula, horario, descricao);
                 aulaController.cadastrarAula(novaAula);
                 System.out.println("Aula cadastrada com sucesso!");
                 break;
@@ -141,6 +138,7 @@ public class AulaView {
                 for (Turma turma : turmaController.listarTurma()) {
                     turmaView.exibirDetalhesTurma(turma);
                 }
+
                 System.out.println("Digite o ID da nova turma: ");
                 int novoIdTurma = scanner.nextInt();
                 scanner.nextLine();
@@ -150,24 +148,29 @@ public class AulaView {
                     System.out.println("Turma não encontrada! Aula não atualizada.");
                     return;
                 }
+
+                System.out.println("Digite o novo dia da aula: ");
+                String novoDiaAula = scanner.nextLine();
+
     
     
-                System.out.print("Digite a nova data da aula (formato dd/MM/yyyy): ");
-                String novaDataAulaString = scanner.nextLine();
-                LocalDate novaDataAula;
+                System.out.print("Digite o novo horário da aula (formato HH:mm): ");
+                String horarioAulaString = scanner.nextLine();
+        
                 try {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    novaDataAula = LocalDate.parse(novaDataAulaString, formatter);
-                } catch (Exception e) {
-                    System.out.println("Data informada em formato inválido! Aula não atualizada.");
-                    return;
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                    horarioAtualizado = LocalTime.parse(horarioAulaString, formatter);
+                    System.out.println("Horário da aula: " + horarioAtualizado);
+                } catch (DateTimeParseException e) {
+                    System.out.println("Horário informado em formato inválido! Aula não cadastrada.");
                 }
     
                 System.out.print("Digite a nova descrição da aula: ");
                 String novaDescricao = scanner.nextLine();
                 aulaAtualizada.setTurma(novaTurma);
                 aulaAtualizada.setProfessor(novoProfessor);
-                aulaAtualizada.setHorario(novaDataAula);
+                aulaAtualizada.setHorario(horarioAtualizado);
+                aulaAtualizada.setDiaDeAula(novoDiaAula);
                 aulaAtualizada.setDescricao(novaDescricao);
     
                 aulaController.atualizarAula(aulaAtualizada);

@@ -12,23 +12,23 @@ public class MateriaController {
         this.materiaCrud = materiaCrud;
     }
 
-    public void cadastrarMateria(Materia materia) {
+    public void cadastrarMateria(Materia materia) throws Exception{
         materiaCrud.cadastrarMateria(materia);
     }
 
-    public void atualizarMateria(Materia materia) {
+    public void atualizarMateria(Materia materia) throws Exception{
         materiaCrud.atualizarMateria(materia);
     }
 
-    public void deletarMateria(int id) {
+    public void deletarMateria(int id) throws Exception{
         materiaCrud.deletarMateria(id);
     }
 
-    public Materia buscarMateriaPorId(int id) {
-        return materiaCrud.buscarMateriaPorId(id);
+    public Materia buscarMateriaPorId(int id) throws Exception{
+        return materiaCrud.buscarMateriaId(id);
     }
 
-    public List<Materia> listarMaterias(){
+    public List<Materia> listarMaterias() throws Exception{
         return materiaCrud.listarMaterias();
     }
 }

@@ -27,7 +27,7 @@ public class OutroFuncionarioView {
         }
     }
 
-      public void menuFuncionarios(OutroFuncionarioController funcionarioController, OutroFuncionarioView funcionarioView, Scanner scanner) {
+      public void menuFuncionarios(OutroFuncionarioController funcionarioController, OutroFuncionarioView funcionarioView, Scanner scanner) throws Exception{
         System.out.println("Menu de Funcionários");
         System.out.println("1. Cadastrar Funcionário");
         System.out.println("2. Buscar Funcionário por ID");
@@ -84,7 +84,6 @@ public class OutroFuncionarioView {
                     scanner.nextLine();
                     System.out.print("Digite o novo cargo do funcionário: ");
                     funcionarioAtualizado.setCargo(scanner.nextLine());
-
                     funcionarioController.atualizarOutroFuncionario(funcionarioAtualizado);
                     System.out.println("Funcionário atualizado com sucesso!");
                 } else {

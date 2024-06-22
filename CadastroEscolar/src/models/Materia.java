@@ -1,35 +1,51 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Materia {
     private int id;
-    private int proximoId = 1;
+    private static int proximoId = 1;
     private String nome;
     private String descricao;
-    private List <Professor> professores;
     
     public Materia(String nome, String descricao) {
         this.id = proximoId++;
         this.nome = nome;
         this.descricao = descricao;
-        this.professores = new ArrayList<>();
     }
 
-    public int getId() {return id;}
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) {this.id = id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getNome() {return nome;}
+    public int getProximoId() {
+        return proximoId;
+    }
 
-    public void setNome(String nome) {this.nome = nome;}
+    public void setProximoId(int proximoId) {
+        this.proximoId = proximoId;
+    }
 
-    public String getDescricao() {return descricao;}
+    public String getNome() {
+        return nome;
+    }
 
-    public void setDescricao(String descricao) {this.descricao = descricao;}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public List<Professor> getprofessores() {return professores;}
+    public String getDescricao() {
+        return descricao;
+    }
 
-    public void setprofessores(List<Professor> professores) {this.professores = professores;}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+
+    
 }
