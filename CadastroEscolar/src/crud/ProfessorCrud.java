@@ -3,17 +3,25 @@ package crud;
 import models.Professor;
 import util.Log;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProfessorCrud {
-    private List<Professor> professores = new ArrayList<>();
+    private List<Professor> professores;
+    private static final String FILE_NAME = "professores.ser";
+
+    public ProfessorCrud() {
+        carregarDados();
+    }
 
     public void cadastrarProfessor(Professor professor) throws Exception {
         if (buscarProfessorPorNome(professor.getNome()) != null) {
             throw new Exception("Professor com o nome " + professor.getNome() + " já está cadastrado.");
         }
+        professor.setId(proximoIdDisponivel()); 
         professores.add(professor);
+        salvarDados();
         registrarLog("Professor cadastrado: " + professor.getNome());
     }
 
@@ -48,6 +56,7 @@ public class ProfessorCrud {
             professor.setNome(professorAtualizado.getNome());
             professor.setIdade(professorAtualizado.getIdade());
             professor.setMateria(professorAtualizado.getMateria());
+            salvarDados();
             registrarLog("Professor atualizado: " + professor.getNome());
         }
     }
@@ -56,8 +65,45 @@ public class ProfessorCrud {
         Professor professor = buscarProfessorPorId(id);
         if (professor != null) {
             professores.remove(professor);
+            salvarDados();
             registrarLog("Professor removido: " + professor.getNome());
         }
+    }
+
+    private void salvarDados() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
+            oos.writeObject(professores);
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar dados: " + e.getMessage());
+        }
+    }
+
+    private void carregarDados() {
+        File file = new File(FILE_NAME);
+        if (file.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
+                professores = (List<Professor>) ois.readObject();
+                atualizarProximoId();
+            } catch (IOException | ClassNotFoundException e) {
+                System.err.println("Erro ao carregar dados: " + e.getMessage());
+            }
+        } else {
+            professores = new ArrayList<>();
+        }
+    }
+
+    private void atualizarProximoId() {
+        int maxId = 0;
+        for (Professor p : professores) {
+            if (p.getId() > maxId) {
+                maxId = p.getId();
+            }
+        }
+        Professor.setProximoId(maxId + 1); 
+    }
+
+    private int proximoIdDisponivel() {
+        return Professor.getProximoId(); 
     }
 
     private void registrarLog(String mensagem) {

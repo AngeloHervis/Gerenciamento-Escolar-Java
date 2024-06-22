@@ -1,13 +1,15 @@
 package models;
 
+import java.io.Serializable;
 
-
-public class Materia {
+public class Materia implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private int id;
     private static int proximoId = 1;
     private String nome;
     private String descricao;
-    
+
     public Materia(String nome, String descricao) {
         this.id = proximoId++;
         this.nome = nome;
@@ -20,14 +22,6 @@ public class Materia {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getProximoId() {
-        return proximoId;
-    }
-
-    public void setProximoId(int proximoId) {
-        this.proximoId = proximoId;
     }
 
     public String getNome() {
@@ -46,6 +40,20 @@ public class Materia {
         this.descricao = descricao;
     }
 
+    public static int getProximoId() {
+        return proximoId;
+    }
 
-    
+    public static void setProximoId(int proximoId) {
+        Materia.proximoId = proximoId;
+    }
+
+    @Override
+    public String toString() {
+        return "Materia{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                '}';
+    }
 }

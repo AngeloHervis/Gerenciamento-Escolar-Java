@@ -1,6 +1,10 @@
 package models;
 
-public abstract class Pessoa {
+import java.io.Serializable;
+
+public abstract class Pessoa implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     protected int id;
     protected static int proximoId = 1;
     protected String nome;
@@ -34,6 +38,14 @@ public abstract class Pessoa {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public static int getProximoId() {
+        return proximoId;
+    }
+
+    public static void setProximoId(int proximoId) {
+        Pessoa.proximoId = proximoId;
     }
 
     public String exibirInformacoes() {

@@ -1,6 +1,7 @@
 package crud;
 
 import models.Aluno;
+import models.Aula;
 import util.Log;
 
 import java.util.ArrayList;
@@ -59,6 +60,20 @@ public class AlunoCrud {
             alunos.remove(aluno);
             registrarLog("Aluno removido: " + aluno.getNome());
         }
+    }
+
+    private void atualizarProximoId() {
+        int maxId = 0;
+        for (Aluno a : alunos) {
+            if (a.getId() > maxId) {
+                maxId = a.getId();
+            }
+        }
+        Aluno.setProximoId(maxId + 1); 
+    }
+
+    private int proximoIdDisponivel() {
+        return Aluno.getProximoId(); 
     }
 
     private void registrarLog(String mensagem) {

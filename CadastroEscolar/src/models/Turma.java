@@ -1,10 +1,12 @@
 package models;
 
+import java.io.Serializable;
 
+public class Turma implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-public class Turma {
     private int id;
-    private int proximoId = 1;
+    private static int proximoId = 1;
     private String nome;
     private String descricao;
 
@@ -22,6 +24,14 @@ public class Turma {
         this.id = id;
     }
 
+    public static int getProximoId() {
+        return proximoId;
+    }
+
+    public static void setProximoId(int proximoId) {
+        Turma.proximoId = proximoId;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -37,5 +47,4 @@ public class Turma {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
 }
